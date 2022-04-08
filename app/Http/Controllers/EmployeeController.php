@@ -13,7 +13,7 @@ class EmployeeController extends Controller
     }
     public function ssd()
     {
-        $employee = User::query();
+        $employee = User::with('department');
 
         return Datatables::of($employee)
         ->addColumn('department_name',function($each){
@@ -28,5 +28,8 @@ class EmployeeController extends Controller
         })
         ->rawColumns(['is_present'])
         ->make(true);
+    }
+    public function create(){
+        return view('employee.create');
     }
 }

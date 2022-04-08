@@ -1,9 +1,16 @@
+.badge{
+    padding:6px;
+    font-size: 12px;
+}
 .btn-theme {
     color: #fff;
     background-color: #4CD195 !important;
 }
 .btn-theme:hover{
     color:#fff;
+}
+.btn{
+    font-size: 14px !;
 }
 
 /* -----------------------header-menu----------------*/
@@ -486,5 +493,8 @@
   .chiller-theme .sidebar-footer>a:last-child {
       border-right: none;
   }
-
+/*-----------------------Datatable Css -------------*/
+.pagination .page-item.active .page-link{
+    background-color: #4CD195 !important;
+}
 

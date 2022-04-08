@@ -2,6 +2,12 @@
 @extends('layouts.app')
 @section('title','Employees')
 @section('content')
+    <div>
+        <a href="{{ route('employee.create') }}" class="btn btn-theme btn-sm">
+            <i class="fas fa-plus-circle"></i>
+            Create Employees
+        </a>
+    </div>
     <div class="card">
         <div class="card-body">
             <table class="table table-bordered Datatable">
