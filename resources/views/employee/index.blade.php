@@ -2,6 +2,7 @@
 @extends('layouts.app')
 @section('title','Employees')
 @section('content')
+    <a href="{{ route('employee.create') }}" class="btn btn-theme">Create Employee</a>
     <div class="card">
         <div class="card-body">
             <table class="table table-bordered Datatable">

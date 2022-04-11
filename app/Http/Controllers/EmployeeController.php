@@ -29,4 +29,7 @@ class EmployeeController extends Controller
         ->rawColumns(['is_present'])
         ->make(true);
     }
+    public function create(){
+        return view('employee.create');
+    }
 }
