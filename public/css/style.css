@@ -18,18 +18,21 @@
     padding:10px 0 !important;
     box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
-
+/* ------Content------- */
+.content{
+    height:85vh;
+    overflow:scroll !important;
+}
 /*---------bottom-menu---------------*/
 .bottom-bar{
+    width: 100%;
     position:absolute;
     bottom: 0;
-    width: 100%;
-
-    box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;
+   box-shadow:0 .1rem 1rem rgba(0,0,0,.15)!important;
 }
 .bottom-bar a{
     text-align: center;
-    padding:15px;
+    padding:5px 15px;
     color:#000;
 }
 .bottom-menu a p{

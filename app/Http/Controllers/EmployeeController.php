@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Department;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use App\Http\Requests\StoreEmployee;
 
 class EmployeeController extends Controller
 {
@@ -30,6 +32,26 @@ class EmployeeController extends Controller
         ->make(true);
     }
     public function create(){
-        return view('employee.create');
+        $departments=Department::orderBy('title')->get();
+        return view('employee.create',compact('departments'));
+    }
+
+    public function store(StoreEmployee $request){
+        $employee =new User();
+        $employee->employee_id=$request->emplpoyee_id;
+        $employee->name=$request->name;
+        $employee->phone=$request->phone;
+        $employee->emial=$request->emial;
+        $employee->nrc_number=$request->nrc_number;
+        $employee->gender=$request->gender;
+        $employee->birthday=$request->birthday;
+        $employee->address=$request->address;
+        $employee->department_id=$request->department_id;
+        $employee->date_of_join=$request->date_of_join;
+        $employee->is_present=$request->is_present;
+        $employee->password=$request->password;
+        $employee->save();
+        return redirect()->route('employee.index')->with('create','Employee is successfully created!');
+
     }
 }

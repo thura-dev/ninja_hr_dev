@@ -10,3 +10,9 @@ style height="100vh;" algin_content_center
 
  ## add_column_to existing table commands
  1.php artisan make:migration add_extra_col_to_users_table --table=users
+
+##pluin
+mdbbootstrap
+daterangepicker
+datatable laravel
+js validtaion laravel
