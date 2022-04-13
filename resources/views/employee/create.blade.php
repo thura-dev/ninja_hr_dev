@@ -1,4 +1,4 @@
-use App\Http\Requests\StoreEmployee;
+
 @extends('layouts.app')
 @section('title','Create Employees')
 @section('content')
@@ -8,7 +8,7 @@ use App\Http\Requests\StoreEmployee;
                 @csrf
                 <div class="md-form">
                     <label for="">Employee ID</label>
-                    <input type="number" name="employee_id" class="form-control">
+                    <input type="text" name="employee_id" class="form-control">
                 </div>
                 <div class="md-form">
                     <label for="">Name</label>
@@ -24,13 +24,13 @@ use App\Http\Requests\StoreEmployee;
                 </div>
                 <div class="md-form">
                     <label for="">NRC Number</label>
-                    <input type="number" name="nrc_number" id="phone" class="form-control">
+                    <input type="number" name="nrc_number" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Gender</label>
                     <select name="gender" class="form-control">
                         <option value="male">Male</option>
-                        <option value="Female">Female</option>
+                        <option value="female">Female</option>
                     </select>
                 </div>
                 <div class="md-form">
@@ -39,7 +39,7 @@ use App\Http\Requests\StoreEmployee;
                 </div>
                 <div class="md-form">
                     <label>Address</label>
-                    <textarea class="md-textarea form-control" rows="3" name="addredd"></textarea>
+                    <textarea class="md-textarea form-control" rows="3" name="address"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="">Department</label>
@@ -51,7 +51,7 @@ use App\Http\Requests\StoreEmployee;
                 </div>
                 <div class="md-form">
                     <label for="">Date of Join</label>
-                    <input type="text" name="date_of_join" class="form-control birthday date_of_join">
+                    <input type="text" name="date_of_join" class="form-control date_of_join">
                 </div>
                 <div class="form-group">
                     <label for="">Is Present?</label>
@@ -75,7 +75,7 @@ use App\Http\Requests\StoreEmployee;
     </div>
     @endsection
     @section('scripts')
-    {!!JsValidator::formRequest('App\Http\Requests\StoreEmployee', '#create-form'); !!}
+    {!!JsValidator::formRequest('App\Http\Requests\StoreEmployee', '#create-form');!!}
     <script>
         $(document).ready(function(){
             $('.birthday').daterangepicker({
@@ -84,7 +84,7 @@ use App\Http\Requests\StoreEmployee;
             "singleDatePicker": true,
             "showDropdowns": true,
             "locale": {
-            "format": "MM/DD/YYYY",
+            "format": "YYYY-MM-DD",
             }
             });
             $('.date_of_join').daterangepicker({
@@ -93,9 +93,9 @@ use App\Http\Requests\StoreEmployee;
                         "singleDatePicker": true,
                         "showDropdowns": true,
                         "locale": {
-                        "format": "MM/DD/YYYY",
+                            "format": "YYYY-MM-DD",
                         }
-            });
+            })
 });
     </script>
 @endsection
@@ -103,23 +103,3 @@ use App\Http\Requests\StoreEmployee;
 
 
 
-{{-- $(document).ready(function{
-    $('.birthday').daterangepicker({
-    "autoApply": true,
-    "maxDate":moment(),
-    "singleDatePicker": true,
-    "showDropdowns": true,
-    "locale": {
-    "format": "MM/DD/YYYY",
-    }
-});
-// $('.date_of_join').daterangepicker({
-//     "autoApply": true,
-//     "maxDate":moment(),
-//     "singleDatePicker": true,
-//     "showDropdowns": true,
-//     "locale": {
-//     "format": "MM/DD/YYYY",
-//     }
-// });
- --}}

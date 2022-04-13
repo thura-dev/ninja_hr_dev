@@ -29,7 +29,7 @@ class StoreEmployee extends FormRequest
             'phone'=>'required|min:9|max:11',
             'email'=>'required|email',
             'nrc_number'=>'required',
-            'gender'=>'requird',
+            // 'gender'=>'requird',
             'birthday'=>'required',
             'address'=>'required',
             'department_id'=>'required',
