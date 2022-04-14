@@ -14,10 +14,10 @@ class AddExtraColToUsersTables extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('employee-id')->nullable();
+            $table->string('employee_id')->nullable();
             $table->string('phone')->unique()->nullable();
             $table->string('nrc_number')->nullable();
-            $table->date('birthdady')->nullable();
+            $table->date('birthday')->nullable();
             $table->enum('gender',['male','female'])->nullable();
             $table->text('address')->nullable();
 

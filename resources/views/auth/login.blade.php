@@ -24,13 +24,15 @@
                             <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autofocus>
                         </div>
                         @error('phone')
-                        <span class="text-danger">$message</span>
+                        <span class="text-danger">{{ $message }}</span>
                         @enderror
                         <div class="md-form">
                             <label for="">Password</label>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}"  required>
                         </div>
-
+                        @error('password')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
 
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
