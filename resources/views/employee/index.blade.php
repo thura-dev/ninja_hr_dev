@@ -68,7 +68,15 @@
                 "targets": "hidden",
                 "visible": false
             },
-        ]
+        ],
+         language: {
+                 "paginate": {
+                    "previous": "<i class='far fa-arrow-alt-circle-left'></i>",
+                     "next":"<i class='far fa-arrow-alt-circle-right'></i>"
+
+                    },
+                    "processing": "<img src='/image/loading.gif' style='width:50px'/><p>....Loaging...</p>"
+                }
 
         });
     })
