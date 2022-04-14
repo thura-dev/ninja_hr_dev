@@ -504,4 +504,13 @@
 .pagination .page-item.active .page-link{
     background-color: #4CD195 !important;
 }
+.div.dataTables_wrapper div.dataTables_filter input{
+    width:70px;
+}
+.table.dataTable>tbody>tr.child ul.dtr-details{
+    width:100%;
+}
+.table.dataTable>tbody>tr.child ul.dtr-details>li{
+    text-align: left !important;
+}
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Carbon\Carbon;
 use App\Department;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -28,6 +29,12 @@ class EmployeeController extends Controller
             }else{
                 return '<span class="badge badge-success">Success</span>';
             }
+        })
+        ->editColumn('updated_at',function($each){
+            return Carbon::parse($each->updated_at)->format('Y-m-d H-i-s');
+        })
+        ->addColumn('plus-icon',function($each){
+            return null;
         })
         ->rawColumns(['is_present'])
         ->make(true);
