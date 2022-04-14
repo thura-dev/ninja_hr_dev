@@ -23,11 +23,13 @@
    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
    {{-- Datatable css --}}
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    {{-- Daterangepicker css --}}
-   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+{{-- Daterangepicker csss --}}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
+    <div class="page-wrapper chiller-theme">
 
         <nav id="sidebar" class="sidebar-wrapper">
           <div class="sidebar-content">
@@ -111,16 +113,14 @@
                 </div>
             </div>
         </div>
-
         <div class="py-4 content">
             <div class="d-flex justify-content-center">
                 <div class="col-md-8">
                     @yield('content')
                 </div>
             </div>
-            </div>
 
-
+        </div>
         <div class="bottom-bar">
             <div class="d-flex justify-content-center">
                 <div class="col-md-8">
@@ -146,7 +146,8 @@
                 </div>
             </div>
         </div>
-    </div>
+
+      </div>
 
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -158,16 +159,16 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 {{-- Datatable script  --}}
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js" type="text/javascript"></script>
-
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-{{-- Daterangepicker --}}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <!-- Laravel Javascript Validation -->
 <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{{-- Sweet alert 2 --}}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   $(function ($) {
-
     $(".sidebar-dropdown > a").click(function() {
         $(".sidebar-submenu").slideUp(200);
         if (
@@ -181,7 +182,6 @@
                         $(this).parent().addClass("active");
                     }
     });
-
         $("#close-sidebar").click(function() {
             $(".page-wrapper").removeClass("toggled");
         });
@@ -189,14 +189,28 @@
             e.preventDefault();
             $(".page-wrapper").addClass("toggled");
         });
+        document.addEventListener('click',function(event) {
+            if(document.getElementById('show-sidebar').contains(event.target)){
+                $(".page-wrapper").addClass("toggled");
+            }else if(!document.getElementById('sidebar').contains(event.target)){
+                $(".page-wrapper").removeClass("toggled");
+            }
+
+        })
+        @if(session('create'))
+        Swal.fire({
+            title: 'Successfully created!',
+            text: "{{ session('create') }}",
+            icon: 'success',
+
+        })
+
+        @endif
 });
 </script>
  @yield('scripts')
 </body>
 </html>
-
-
-
 
 
 

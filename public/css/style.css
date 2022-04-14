@@ -18,6 +18,10 @@
     padding:10px 0 !important;
     box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
+.app-bar a{
+    color:#000;
+    font-size: 14px;
+}
 /* ------Content------- */
 .content{
     height:85vh;
@@ -499,5 +503,14 @@
 /*-----------------------Datatable Css -------------*/
 .pagination .page-item.active .page-link{
     background-color: #4CD195 !important;
+}
+.div.dataTables_wrapper div.dataTables_filter input{
+    width:70px;
+}
+.table.dataTable>tbody>tr.child ul.dtr-details{
+    width:100%;
+}
+.table.dataTable>tbody>tr.child ul.dtr-details>li{
+    text-align: left !important;
 }
 
