@@ -549,3 +549,15 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 }
 
 
+input[type="file"] {
+    padding: 2px !important;;
+}
+
+
+/* preview img */
+.preview_img img{
+    width:100px;
+    border-radius: 10px !important;
+    border:1px solid #eee;
+    margin:3px;
+}

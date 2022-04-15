@@ -10,6 +10,7 @@ use Yajra\Datatables\Datatables;
 use App\Http\Requests\StoreEmployee;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateEmployee;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
@@ -51,6 +52,12 @@ class EmployeeController extends Controller
     }
 
     public function store(StoreEmployee $request){
+        $profile_img_name=null;
+        if($request->hasFile('profile_img')){
+            $profile_img_file=$request->file('profile_img');
+            $profile_img_name=uniqid().'-'.time().'.'.$profile_img_file->getClientOriginalExtension();
+            Storage::disk('public')->put('employee/'.$profile_img_name, file_get_contents($profile_img_file));
+        }
         $employee =new User();
         $employee->employee_id=$request->employee_id;
         $employee->name=$request->name;
@@ -63,6 +70,7 @@ class EmployeeController extends Controller
         $employee->department_id=$request->department_id;
         $employee->date_of_join=$request->date_of_join;
         $employee->is_present=$request->is_present;
+        $employee->profile_img=$profile_img_name;
         $employee->password=Hash::make($request->password);
         $employee->save();
         return redirect()->route('employee.index')->with('create','Employee is successfully created!');
