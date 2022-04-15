@@ -69,4 +69,13 @@ class EmployeeController extends Controller
         return redirect()->route('employee.index')->with('create','Employee is successfully created!');
 
     }
+
+    public function edit($id){
+        $employee=User::findOrFail($id);
+        $departments=Department::orderBy('title')->get();
+        return view('employee.edit',compact('employee','departments'));
+    }
+    public function update($id,Request $request){
+
+    }
 }
