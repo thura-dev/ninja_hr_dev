@@ -62,7 +62,7 @@
                 <div class="form-group">
                     <label for="progile_img">Profile Image</label>
                     <input type="file" name="profile_img" id="profile_img" class="form-control">
-                    <div class="preview_img">
+                    <div class="preview_img py-2">
 
                     </div>
                 </div>
@@ -104,7 +104,7 @@
             })
             $('#profile_img').on('change', function(){
                 var file_length=document.getElementById('profile_img').files.length;
-                $('.preview_img').html;
+                $('.preview_img').html('');
                 for(i=0;i<file_length;i++){
                     $('.preview_img').append(`<img src="${URL.createObjectURL(event.target.files[i])}"/>`)
                 }

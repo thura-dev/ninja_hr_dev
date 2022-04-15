@@ -34,6 +34,7 @@ class StoreEmployee extends FormRequest
             'address'=>'required',
             'department_id'=>'required',
             'date_of_join'=>'required',
+            'password'=>'required',
             'is_present'=>'required'
 
         ];
