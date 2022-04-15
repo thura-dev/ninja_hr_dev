@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Http\Requests\StoreEmployee;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UpdateEmployee;
 
 class EmployeeController extends Controller
 {
@@ -50,8 +51,6 @@ class EmployeeController extends Controller
     }
 
     public function store(StoreEmployee $request){
-            // dd($request->all());
-        // return $request->all();
         $employee =new User();
         $employee->employee_id=$request->employee_id;
         $employee->name=$request->name;
@@ -75,7 +74,25 @@ class EmployeeController extends Controller
         $departments=Department::orderBy('title')->get();
         return view('employee.edit',compact('employee','departments'));
     }
-    public function update($id,Request $request){
-
+    public function update($id,UpdateEmployee $request){
+        $employee =User::findOrFail($id);
+        $employee->employee_id=$request->employee_id;
+        $employee->name=$request->name;
+        $employee->phone=$request->phone;
+        $employee->email=$request->email;
+        $employee->nrc_number=$request->nrc_number;
+        $employee->gender=$request->gender;
+        $employee->birthday=$request->birthday;
+        $employee->address=$request->address;
+        $employee->department_id=$request->department_id;
+        $employee->date_of_join=$request->date_of_join;
+        $employee->is_present=$request->is_present;
+        $employee->password=$request->password ? Hash::make($request->password) : $employee->password;
+        $employee->update();
+        return redirect()->route('employee.index')->with('create','Employee is successfully updated!');
+    }
+    public function show($id){
+        $employee =User::findOrFail($id);
+        return view('employee.show',compact('employee'));
     }
 }

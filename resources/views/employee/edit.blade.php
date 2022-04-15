@@ -3,8 +3,9 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('employee.store') }}" method="POST" autocomplete="off" id="create-form">
+            <form action="{{ route('employee.update',$employee->id) }}" method="POST" autocomplete="off" id="edit-form">
                 @csrf
+                @method('PUT')
                 <div class="md-form">
                     <label for="">Employee ID</label>
                     <input type="text" name="employee_id" class="form-control" value="{{ $employee->employee_id }}">
@@ -23,7 +24,7 @@
                 </div>
                 <div class="md-form">
                     <label for="">NRC Number</label>
-                    <input type="number" name="nrc_number" class="form-control" value="{{ $employee->nrc_number }}">
+                    <input type="text" name="nrc_number" class="form-control" value="{{ $employee->nrc_number }}">
                 </div>
                 <div class="form-group">
                     <label for="">Gender</label>
@@ -74,7 +75,7 @@
     </div>
     @endsection
     @section('scripts')
-    {!!JsValidator::formRequest('App\Http\Requests\StoreEmployee', '#create-form');!!}
+    {!!JsValidator::formRequest('App\Http\Requests\UpdateEmployee', '#edit-form');!!}
     <script>
         $(document).ready(function(){
             $('.birthday').daterangepicker({
