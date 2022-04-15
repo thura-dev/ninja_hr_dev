@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 @extends('layouts.app')
 @section('title','Create Employees')
 @section('content')
@@ -8,12 +9,14 @@
             <form action="" method="POST" autocomplete="off">
 =======
 
+=======
+>>>>>>> 2bc74c8c3ba11d7115791f7303d3cf33f356b393
 @extends('layouts.app')
 @section('title','Create Employees')
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('employee.store') }}" method="POST" autocomplete="off" id="create-form">
+            <form action="{{ route('employee.store') }}" method="POST" autocomplete="off" id="create-form" enctype="multipart/form-data">
                 @csrf
 >>>>>>> a944a5ea6ec6a73cd80789900805f00b38e970ce
                 <div class="md-form">
@@ -47,7 +50,7 @@
                 </div>
                 <div class="md-form">
                     <label for="">Phone</label>
-                    <input type="number" name="phone" id="phone" class="form-control">
+                    <input type="number" name="phone" id="phone" class="form-control p-1">
                 </div>
                 <div class="md-form">
                     <label for="">Email</label>
@@ -108,6 +111,13 @@
                         <option value="0">No</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="progile_img">Profile Image</label>
+                    <input type="file" name="profile_img" id="profile_img" class="form-control">
+                    <div class="preview_img">
+
+                    </div>
+                </div>
                 <div class="md-form">
                     <label for="">Password</label>
                     <input type="password" name="password" class="form-control">
@@ -143,6 +153,14 @@
                         "locale": {
                             "format": "YYYY-MM-DD",
                         }
+            })
+            $('#profile_img').on('change', function(){
+                var file_length=document.getElementById('profile_img').files.length;
+                $('.preview_img').html;
+                for(i=0;i<file_length;i++){
+                    $('.preview_img').append(`<img src="${URL.createObjectURL(event.target.files[i])}"/>`)
+                }
+
             })
 });
     </script>

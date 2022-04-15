@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Http\Requests\StoreEmployee;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UpdateEmployee;
+use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
@@ -36,7 +38,12 @@ class EmployeeController extends Controller
         ->addColumn('plus-icon',function($each){
             return null;
         })
-        ->rawColumns(['is_present'])
+        ->addColumn('action',function($each){
+           $edit_icon='<a href="'.route('employee.edit',$each->id).'" class="text-warning"><i class="far fa-edit"></i></a>';
+           $info_icon='<a href="'.route('employee.show',$each->id).'" class="text-primary"><i class="fas fa-info-circle"></i></a>';
+           return '<div class="action-icon">'.$edit_icon.$info_icon.'</div>';
+        })
+        ->rawColumns(['is_present','action'])
         ->make(true);
     }
     public function create(){
@@ -48,8 +55,12 @@ class EmployeeController extends Controller
     }
 
     public function store(StoreEmployee $request){
-            // dd($request->all());
-        // return $request->all();
+        $profile_img_name=null;
+        if($request->hasFile('profile_img')){
+            $profile_img_file=$request->file('profile_img');
+            $profile_img_name=uniqid().'-'.time().'.'.$profile_img_file->getClientOriginalExtension();
+            Storage::disk('public')->put('employee/'.$profile_img_name, file_get_contents($profile_img_file));
+        }
         $employee =new User();
         $employee->employee_id=$request->employee_id;
         $employee->name=$request->name;
@@ -62,10 +73,38 @@ class EmployeeController extends Controller
         $employee->department_id=$request->department_id;
         $employee->date_of_join=$request->date_of_join;
         $employee->is_present=$request->is_present;
+        $employee->profile_img=$profile_img_name;
         $employee->password=Hash::make($request->password);
         $employee->save();
         return redirect()->route('employee.index')->with('create','Employee is successfully created!');
 
 >>>>>>> a944a5ea6ec6a73cd80789900805f00b38e970ce
+    }
+
+    public function edit($id){
+        $employee=User::findOrFail($id);
+        $departments=Department::orderBy('title')->get();
+        return view('employee.edit',compact('employee','departments'));
+    }
+    public function update($id,UpdateEmployee $request){
+        $employee =User::findOrFail($id);
+        $employee->employee_id=$request->employee_id;
+        $employee->name=$request->name;
+        $employee->phone=$request->phone;
+        $employee->email=$request->email;
+        $employee->nrc_number=$request->nrc_number;
+        $employee->gender=$request->gender;
+        $employee->birthday=$request->birthday;
+        $employee->address=$request->address;
+        $employee->department_id=$request->department_id;
+        $employee->date_of_join=$request->date_of_join;
+        $employee->is_present=$request->is_present;
+        $employee->password=$request->password ? Hash::make($request->password) : $employee->password;
+        $employee->update();
+        return redirect()->route('employee.index')->with('create','Employee is successfully updated!');
+    }
+    public function show($id){
+        $employee =User::findOrFail($id);
+        return view('employee.show',compact('employee'));
     }
 }
