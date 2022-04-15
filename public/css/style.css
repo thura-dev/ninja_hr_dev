@@ -548,6 +548,11 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 }
 }
 
+<<<<<<< HEAD
+/*-----------------------Datatable Css -------------*/
+.pagination .page-item.active .page-link{
+    background-color: #4CD195 !important;
+=======
 
 input[type="file"] {
     padding: 2px !important;;
@@ -560,4 +565,5 @@ input[type="file"] {
     border-radius: 10px !important;
     border:1px solid #eee;
     margin:3px;
+>>>>>>> 2bc74c8c3ba11d7115791f7303d3cf33f356b393
 }

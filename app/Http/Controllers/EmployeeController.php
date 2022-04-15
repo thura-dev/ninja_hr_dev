@@ -47,7 +47,7 @@ class EmployeeController extends Controller
         ->make(true);
     }
     public function create(){
-        return view('employee.create');
+
         $departments=Department::orderBy('title')->get();
         return view('employee.create',compact('departments'));
     }
@@ -75,6 +75,7 @@ class EmployeeController extends Controller
         $employee->password=Hash::make($request->password);
         $employee->save();
         return redirect()->route('employee.index')->with('create','Employee is successfully created!');
+
 
     }
 
