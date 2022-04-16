@@ -562,10 +562,14 @@ input[type="file"] {
     border:1px solid #eee;
     margin:3px;
 }
-#profile-img{
-    width:120px;
-    height:120px;
+.profile-img{
+    width:140px;
+    height:140px;
+    background:#4CD195!important;
     border-radius:100%;
     padding:3px;
 
+}
+.dash-border{
+    border-left:2px dashed #ddd;
 }
