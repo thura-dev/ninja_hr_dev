@@ -47,7 +47,7 @@ class EmployeeController extends Controller
         ->make(true);
     }
     public function create(){
-        return view('employee.create');
+
         $departments=Department::orderBy('title')->get();
         return view('employee.create',compact('departments'));
     }
