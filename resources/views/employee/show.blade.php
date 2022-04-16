@@ -3,6 +3,18 @@
 @section('content')
     <div class="card">
         <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{$employee->profile_img_path()}}" id="profile-img"/>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+
+
+
+
+
+
            <div class="row">
             <div class="col-md-6">
                 <div class="mb-3">
