@@ -51,6 +51,7 @@ class EmployeeController extends Controller
         return view('employee.create',compact('departments'));
     }
 
+    //test
     public function store(StoreEmployee $request){
         $profile_img_name=null;
         if($request->hasFile('profile_img')){
