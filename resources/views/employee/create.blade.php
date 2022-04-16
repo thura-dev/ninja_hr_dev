@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 @section('title','Create Employees')
 @section('content')
@@ -53,7 +52,6 @@
                     <select name="gender" class="form-control">
                         <option value="male">Male</option>
                         <option value="female">Female</option>
-
                     </select>
                 </div>
                 <div class="md-form">
