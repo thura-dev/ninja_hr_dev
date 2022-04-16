@@ -47,9 +47,6 @@ class EmployeeController extends Controller
         ->make(true);
     }
     public function create(){
-<<<<<<< HEAD
-        return view('employee.create');
-=======
         $departments=Department::orderBy('title')->get();
         return view('employee.create',compact('departments'));
     }
@@ -78,7 +75,6 @@ class EmployeeController extends Controller
         $employee->save();
         return redirect()->route('employee.index')->with('create','Employee is successfully created!');
 
->>>>>>> a944a5ea6ec6a73cd80789900805f00b38e970ce
     }
 
     public function edit($id){

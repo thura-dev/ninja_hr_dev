@@ -1,16 +1,12 @@
 @extends('layouts.app')
 @section('title','Employees')
 @section('content')
-<<<<<<< HEAD
-    <a href="{{ route('employee.create') }}" class="btn btn-theme">Create Employee</a>
-=======
     <div>
         <a href="{{ route('employee.create') }}" class="btn btn-theme btn-sm">
             <i class="fas fa-plus-circle"></i>
             Create Employees
         </a>
     </div>
->>>>>>> a944a5ea6ec6a73cd80789900805f00b38e970ce
     <div class="card">
         <div class="card-body">
             <table class="table table-bordered Datatable" style="width:100%">

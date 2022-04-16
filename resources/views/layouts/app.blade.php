@@ -23,10 +23,7 @@
    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
    {{-- Datatable css --}}
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-<<<<<<< HEAD
-=======
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
->>>>>>> a944a5ea6ec6a73cd80789900805f00b38e970ce
 {{-- Daterangepicker csss --}}
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -164,16 +161,12 @@
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-<<<<<<< HEAD
-{{-- Daterangepicker js --}}
-=======
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <!-- Laravel Javascript Validation -->
 <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {{-- Sweet alert 2 --}}
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
->>>>>>> a944a5ea6ec6a73cd80789900805f00b38e970ce
 <script>
   $(function ($) {
     $(".sidebar-dropdown > a").click(function() {
