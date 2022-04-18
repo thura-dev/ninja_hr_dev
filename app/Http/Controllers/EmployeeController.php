@@ -22,6 +22,14 @@ class EmployeeController extends Controller
         $employee = User::with('department');
 
         return Datatables::of($employee)
+        ->filterColumn('department_name',function($query,$keyword){
+            $query->whereHas('department',function($q1) use ($keyword){
+                $q1->where('title','like','%'.$keyword.'%');
+            });
+        })
+        ->editColumn('profile_img',function($each){
+            return '<img src="'.$each->profile_img_path().'" alt="" class="profile_thumbnail"/><p class="my-1">'.$each->name.'</p>';
+        })
         ->addColumn('department_name',function($each){
             return $each->department ? $each->department->title :'-';
         })
@@ -41,9 +49,10 @@ class EmployeeController extends Controller
         ->addColumn('action',function($each){
            $edit_icon='<a href="'.route('employee.edit',$each->id).'" class="text-warning"><i class="far fa-edit"></i></a>';
            $info_icon='<a href="'.route('employee.show',$each->id).'" class="text-primary"><i class="fas fa-info-circle"></i></a>';
-           return '<div class="action-icon">'.$edit_icon.$info_icon.'</div>';
+           $delete_icon='<a href="#" class="text-danger delete-btn" data-id="'.$each->id.'"><i class="fas fa-trash-alt"></i></a>';
+           return '<div class="action-icon">'.$edit_icon.$info_icon.$delete_icon.'</div>';
         })
-        ->rawColumns(['is_present','action'])
+        ->rawColumns(['profile_img','is_present','action'])
         ->make(true);
     }
     public function create(){
@@ -111,5 +120,10 @@ class EmployeeController extends Controller
     public function show($id){
         $employee =User::findOrFail($id);
         return view('employee.show',compact('employee'));
+    }
+    public function destroy($id){
+        $employee =User::findOrFail($id);
+        $employee->delete();
+        return 'success';
     }
 }

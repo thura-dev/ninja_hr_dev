@@ -1,3 +1,6 @@
+body{
+    background:#EDF2F6;
+}
 .badge{
     padding:6px;
     font-size: 12px;
@@ -5,6 +8,9 @@
 .btn-theme {
     color: #fff;
     background-color: #4CD195 !important;
+}
+.table td,.table th {
+    vertical-align: middle;
 }
 .btn-theme:hover{
     color:#fff;
@@ -15,6 +21,7 @@
 
 /* -----------------------header-menu----------------*/
 .app-bar{
+    background:#fff;
     padding:10px 0 !important;
     box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
@@ -502,6 +509,11 @@
       border-right: none;
   }
 /*-----------------------Datatable Css -------------*/
+mark{
+    padding:0 !important;
+    background:#4CD195;
+    /* color:black; */
+}
 .pagination .page-item.active .page-link{
     background-color: #4CD195 !important;
 }
@@ -512,7 +524,7 @@
     width:25px;
     display: inline-block;
     border-radius: 5px;
-    margin:1px !important;
+    margin:3px !important;
 }
 .paginate_button {
     background-color: #eee !important;
@@ -569,6 +581,12 @@ input[type="file"] {
     border-radius:100%;
     padding:3px;
 
+}
+.profile_thumbnail{
+    width:70px;
+    height:70px;
+    border-radius: 10px;
+    border:1px solid #ddd;
 }
 .dash-border{
     border-left:2px dashed #ddd;

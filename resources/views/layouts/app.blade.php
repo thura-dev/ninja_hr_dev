@@ -104,9 +104,15 @@
             <div class="d-flex justify-content-center">
                 <div class="col-md-8">
                    <div class="d-flex justify-content-between algin-content-center">
-                       <a href="" id="show-sidebar">
+                    @if(request()->is('/'))
+                    <a href="" id="show-sidebar">
                            <i class="fas fa-bars"></i>
                        </a>
+                     @else
+                     <a href="" id="back-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                    @endif
                        <h5 class="mb-0">@yield('title')</h5>
                        <a href=""></a>
                    </div>
@@ -138,7 +144,7 @@
                             <p class="mb-0">Home</p>
                         </a>
                         <a href="">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-user"></i>
                             <p class="mb-0">Home</p>
                         </a>
 
@@ -151,6 +157,7 @@
 
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
@@ -167,8 +174,24 @@
 <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {{-- Sweet alert 2 --}}
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+ {{-- Sweet Alert --}}
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ {{-- DataTable Jquery Mark JS --}}
+ <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)"></script>
+ <script src="https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.js"></script>
 <script>
   $(function ($) {
+      let token=document.head.querySelector('meta[name="csrf-token"]');
+      if(token){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN':token.content
+            }
+        });
+      }else{
+          console.error('Error');
+      }
     $(".sidebar-dropdown > a").click(function() {
         $(".sidebar-submenu").slideUp(200);
         if (
@@ -206,6 +229,49 @@
         })
 
         @endif
+        $.extend(true, $.fn.dataTable.defaults, {
+            processing: true,
+            responsive: true,
+            serverSide: true,
+            mark:  true,
+            columnDefs: [
+
+            // {
+            //     "targets": [ 7 ],
+            //     "visible": false
+            // },
+            {
+                "targets": [ 0],
+                "class": "control"
+            },
+            {
+                "targets": "no-sort",
+                "orderable": false
+            },
+            {
+                "targets": "no-search",
+                "searchable": false
+            },
+            {
+                "targets": "hidden",
+                "visible": false
+            },
+            ],
+            language: {
+                 "paginate": {
+                    "previous": "<i class='far fa-arrow-alt-circle-left'></i>",
+                     "next":"<i class='far fa-arrow-alt-circle-right'></i>"
+
+                    },
+                    "processing": "<img src='/image/loading.gif' style='width:50px'/><p>....Loaging...</p>"
+                }
+
+        });
+        $('#back-btn').on('click', function(e){
+                    e.preventDefault();
+                    window.history.go(-1);
+                    return false;
+                })
 });
 </script>
  @yield('scripts')
