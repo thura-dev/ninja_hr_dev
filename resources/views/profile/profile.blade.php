@@ -1,20 +1,20 @@
 @extends('layouts.app')
-@section('title','Ninja HR')
+@section('title','Profile')
 @section('content')
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-12">
-                   <div class="text-center">
-                    <img src="{{$employee->profile_img_path()}}" class="profile-img"/>
-                    <div class="py-3 px-2">
-                        <h4 class="text-muted mb-1">{{ $employee->name }}</h4>
-                        <p class="text-muted mb-2"><span class="text-muted">{{ $employee->employee_id }}</span> | <span class="text-theme">{{ $employee->phone }}</span></p>
-                        <p class="text-muted mb-2"><span class="badge badge-pill badge-light">{{ $employee->department? $employee->department->title : '-' }}</span></p>
-                    </div>
-                   </div>
+                <div class="col-md-6">
+                    <div class="text-center">
+                        <img src="{{$employee->profile_img_path()}}" class="profile-img"/>
+                        <div class="py-3 px-2">
+                            <h4 class="text-muted mb-1">{{ $employee->name }}</h4>
+                            <p class="text-muted mb-2"><span class="text-muted">{{ $employee->employee_id }}</span> | <span class="text-theme">{{ $employee->phone }}</span></p>
+                            <p class="text-muted mb-2"><span class="badge badge-pill badge-light">{{ $employee->department? $employee->department->title : '-' }}</span></p>
+                        </div>
+                       </div>
                 </div>
-                {{-- <div class="col-md-6 dash-border px-3">
+                <div class="col-md-6 dash-border px-3">
                     <p class="mb-1"><strong>Name</strong>:<span class="text-muted">{{ $employee->name }}</span></p>
                     <p class="mb-1"><strong>Phone</strong>:<span class="text-muted">{{ $employee->phone }}</span></p>
                     <p class="mb-1"><strong>Email</strong>:<span class="text-muted">{{ $employee->email }}</span></p>
@@ -30,7 +30,7 @@
                         <span class="badge badge-pill badge-danger">Leave</span>
                         @endif
                     </p>
-                </div> --}}
+                </div>
             </div>
 {{-- <div class="row">
             <div class="col-md-6">

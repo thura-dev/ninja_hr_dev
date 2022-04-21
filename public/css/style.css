@@ -9,6 +9,9 @@ body{
     color: #fff;
     background-color: #4CD195 !important;
 }
+.text-theme{
+    color:#4CD195;
+}
 .table td,.table th {
     vertical-align: middle;
 }
@@ -212,10 +215,15 @@ body{
   }
 
   .sidebar-wrapper .sidebar-header .user-pic img {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-  }
+
+        background: #ccc;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        padding: 3px;
+        border-radius: 10px;
+    }
+
 
   .sidebar-wrapper .sidebar-header .user-info {
     float: left;
@@ -575,8 +583,8 @@ input[type="file"] {
     margin:3px;
 }
 .profile-img{
-    width:140px;
-    height:140px;
+    width:100px;
+    height:100px;
     background:#4CD195!important;
     border-radius:100%;
     padding:3px;
@@ -590,4 +598,9 @@ input[type="file"] {
 }
 .dash-border{
     border-left:2px dashed #ddd;
+}
+.badge{
+    padding:6px 10px 3px;
+    font-size: 12px;
+    box-shadow:none;
 }

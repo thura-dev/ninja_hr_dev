@@ -41,14 +41,12 @@
             </div>
             <div class="sidebar-header">
               <div class="user-pic">
-                <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                <img class="img-responsive img-rounded" src="{{ auth()->user()->profile_img_path() }}"
                   alt="User picture">
               </div>
               <div class="user-info">
-                <span class="user-name">Jhon
-                  <strong>Smith</strong>
-                </span>
-                <span class="user-role">Administrator</span>
+                <span class="user-name">{{ auth()->user()->name }}</span>
+                <span class="user-role">{{ auth()->user()->department? auth()->user()->department->title:'-' }}</span>
                 <span class="user-status">
                   <i class="fa fa-circle"></i>
                   <span>Online</span>
@@ -73,6 +71,24 @@
                     <a href="{{ route('employee.index') }}">
                       <i class="fa fa-users"></i>
                       <span>Employees</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ route('department.index') }}">
+                      <i class="fa fa-sitemap"></i>
+                      <span>Department</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ route('role.index') }}">
+                      <i class="fa fa-user-shield"></i>
+                      <span>Role</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{{ route('permission.index') }}">
+                      <i class="fa fa-shield-alt"></i>
+                      <span>Permission</span>
                     </a>
                   </li>
                 {{-- <li class="sidebar-dropdown">
@@ -131,7 +147,7 @@
             <div class="d-flex justify-content-center">
                 <div class="col-md-8">
                     <div class="d-flex justify-content-between">
-                        <a href="">
+                        <a href="{{ route('home') }}">
                             <i class="fas fa-home"></i>
                             <p class="mb-0">Home</p>
                         </a>
@@ -143,9 +159,9 @@
                             <i class="fas fa-home"></i>
                             <p class="mb-0">Home</p>
                         </a>
-                        <a href="">
+                        <a href="{{ route('profile.profile') }}">
                             <i class="fas fa-user"></i>
-                            <p class="mb-0">Home</p>
+                            <p class="mb-0">Profile</p>
                         </a>
 
                     </div>
@@ -212,6 +228,7 @@
             e.preventDefault();
             $(".page-wrapper").addClass("toggled");
         });
+        @if(request()->is('/'))
         document.addEventListener('click',function(event) {
             if(document.getElementById('show-sidebar').contains(event.target)){
                 $(".page-wrapper").addClass("toggled");
@@ -220,10 +237,11 @@
             }
 
         })
-        @if(session('create'))
+        @endif
+        @if(session('status'))
         Swal.fire({
-            title: 'Successfully created!',
-            text: "{{ session('create') }}",
+
+            text: "{{ session('status') }}",
             icon: 'success',
 
         })

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
 return [
     /*
      * DataTables search options.
@@ -118,5 +120,7 @@ return [
         'header'  => [],
         'options' => 0,
     ],
+
+
 
 ];

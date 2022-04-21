@@ -62,6 +62,7 @@ class EmployeeController extends Controller
 
     //test
     public function store(StoreEmployee $request){
+        $validated = $request->validated();
         $profile_img_name=null;
         if($request->hasFile('profile_img')){
             $profile_img_file=$request->file('profile_img');
@@ -83,7 +84,7 @@ class EmployeeController extends Controller
         $employee->profile_img=$profile_img_name;
         $employee->password=Hash::make($request->password);
         $employee->save();
-        return redirect()->route('employee.index')->with('create','Employee is successfully created!');
+        return redirect()->route('employee.index')->with('status','Employee is successfully created!');
 
     }
 
@@ -93,6 +94,7 @@ class EmployeeController extends Controller
         return view('employee.edit',compact('employee','departments'));
     }
     public function update($id,UpdateEmployee $request){
+        $validated = $request->validated();
         $employee =User::findOrFail($id);
         $profile_img_name=$employee->profile_img;
         if($request->hasFile('profile_img')){
@@ -115,7 +117,7 @@ class EmployeeController extends Controller
         $employee->profile_img=$profile_img_name;
         $employee->password=$request->password ? Hash::make($request->password) : $employee->password;
         $employee->update();
-        return redirect()->route('employee.index')->with('create','Employee is successfully updated!');
+        return redirect()->route('employee.index')->with('status','Employee is successfully updated!');
     }
     public function show($id){
         $employee =User::findOrFail($id);

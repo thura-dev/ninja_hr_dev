@@ -7,7 +7,7 @@
                 @csrf
 
                 <div class="md-form">
-                    <label for=""><Title></Title></label>
+                    <label for="">Title</label>
                     <input type="text" name="title" class="form-control">
                 </div>
                 <div class="d-flex justify-content-center mt-5 mb-3">
@@ -34,7 +34,7 @@
 
     @endsection
     @section('scripts')
-    {!!JsValidator::formRequest('App\Http\Requests\StoreEmployee', '#create-form');!!}
+    {!!JsValidator::formRequest('App\Http\Requests\StoreDepartment', '#create-form');!!}
     <script>
         $(document).ready(function(){
             $('.birthday').daterangepicker({

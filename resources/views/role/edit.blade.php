@@ -1,40 +1,28 @@
 @extends('layouts.app')
-@section('title','Create Department')
+@section('title','Edit Role')
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('department.store') }}" method="POST" autocomplete="off" id="create-form" enctype="multipart/form-data">
+            <form action="{{ route('role.update',$role->id) }}" method="POST" autocomplete="off" id="edit-form" enctype="multipart/form-data">
                 @csrf
-
+                @method('PUT')
                 <div class="md-form">
-                    <label for=""><Title></Title></label>
-                    <input type="text" name="title" class="form-control">
+                    <label for="">Title</label>
+                    <input type="text" name="name" class="form-control" value="{{ $role->name }}">
                 </div>
+
                 <div class="d-flex justify-content-center mt-5 mb-3">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-theme btn-block btn-sm">Confirm</button>
                     </div>
                 </div>
-
-
-
-
-
             </form>
+
         </div>
     </div>
-{{-- @endsection --}}
-{{-- @section('scripts')
-    <script>
-        $('.birthday').daterangepicker({
-
-        });
-    </script>
-@endsection --}}
-
     @endsection
     @section('scripts')
-    {!!JsValidator::formRequest('App\Http\Requests\StoreEmployee', '#create-form');!!}
+    {!!JsValidator::formRequest('App\Http\Requests\UpdateRole', '#edit-form');!!}
     <script>
         $(document).ready(function(){
             $('.birthday').daterangepicker({
@@ -66,5 +54,7 @@
 });
     </script>
 @endsection
+
+
 
 
