@@ -62,7 +62,7 @@ class EmployeeController extends Controller
 
     //test
     public function store(StoreEmployee $request){
-        $validated = $request->validated();
+        // $validated = $request->validated();
         $profile_img_name=null;
         if($request->hasFile('profile_img')){
             $profile_img_file=$request->file('profile_img');
@@ -70,6 +70,7 @@ class EmployeeController extends Controller
             Storage::disk('public')->put('employee/'.$profile_img_name, file_get_contents($profile_img_file));
         }
         $employee =new User();
+
         $employee->employee_id=$request->employee_id;
         $employee->name=$request->name;
         $employee->phone=$request->phone;

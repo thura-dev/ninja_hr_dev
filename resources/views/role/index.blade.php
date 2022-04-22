@@ -13,7 +13,7 @@
                <thead>
                    <th class="text-center no-sort no-search"></th>
                    <th class="text-center">Name</th>
-
+                   <th class="text-center">Permisisions</th>
                    <th class="no-sort text-center m-5" style="width:100px">Action</th>
                    <th class="text-center hidden">Updated at</th>
 
@@ -31,11 +31,12 @@
             columns: [
                 { data: 'plus-icon', name: 'plus-icon',class:'text-center' },
                 { data: 'name', name: 'name',class:'text-center' },
+                { data: 'permissions', name: 'permissions',class:'text-center' },
                 { data: 'action', name: 'action',class:'text-center' },
                 { data: 'updated_at', name: 'updated_at',class:'text-center' }
 
             ],
-            order: [[ 3, "desc" ]],
+            order: [[ 4, "desc" ]],
 
 
 

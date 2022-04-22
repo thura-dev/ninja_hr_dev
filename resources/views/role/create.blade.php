@@ -13,27 +13,21 @@
 
                 <label for="">Permission</label>
                <div class="row">
-
-                  <div class="col-md-3 col-6">
-                    @foreach ($permissions as $permission)
+                   @foreach ($permissions as $permission)
+                   <div class="col-md-3 col-6">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="permissions[]" id="checkbox_{{ $permission->id }}">
+                        <input type="checkbox" class="custom-control-input" name="permissions[]" id="checkbox_{{ $permission->id }}" value="{{ $permission->name }}">
                         <label class="custom-control-label" for="checkbox_{{ $permission->id }}">{{ $permission->name }}</label>
                     </div>
-                    @endforeach
-                 </div>
+                </div>
+                @endforeach
                </div>
                 <div class="d-flex justify-content-center mt-5 mb-3">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-theme btn-block btn-sm">Confirm</button>
                     </div>
                 </div>
-
-
-
-
-
-            </form>
+                </form>
         </div>
     </div>
 {{-- @endsection --}}
