@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','Profile')
 @section('content')
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
@@ -11,6 +11,11 @@
                             <h4 class="text-muted mb-1">{{ $employee->name }}</h4>
                             <p class="text-muted mb-2"><span class="text-muted">{{ $employee->employee_id }}</span> | <span class="text-theme">{{ $employee->phone }}</span></p>
                             <p class="text-muted mb-2"><span class="badge badge-pill badge-light">{{ $employee->department? $employee->department->title : '-' }}</span></p>
+                            <p class="text-muted mb-2">
+                                @foreach ($employee->roles as $role)
+                                    <span class="badge badge-pill badge-primary">{{ $role->name }}</span>
+                                @endforeach
+                            </p>
                         </div>
                        </div>
                 </div>
@@ -108,4 +113,38 @@
            </div> --}}
         </div>
     </div>
+    <div class="card mb-2">
+        <div class="card-body">
+            <a href="#" class="logout-btn btn btn-theme btn-block"><i class="fa fa-sign-out-alt"></i>Logout</a>
+        </div>
+    </div>
+@endsection
+@section('scripts')
+<script>
+ $(document).ready(function(){
+     $('.logout-btn').on('click',function(e){
+         e.preventDefault();
+         swal({
+                text: "Are you sure you want to  ?",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                method: "POST",
+                url:"/logout"
+                }).done(function( res ) {
+                window.location.reload();
+                });
+
+                }
+                });
+
+
+
+
+     });
+ });
+</script>
 @endsection

@@ -31,7 +31,7 @@ class PermissionController extends Controller
         return Datatables::of($permissions)
 
         ->addColumn('action',function($each){
-            $edit_icon='<a href="'.route('role.edit',$each->id).'" class="text-warning"><i class="far fa-edit"></i></a>';
+            $edit_icon='<a href="'.route('permission.edit',$each->id).'" class="text-warning"><i class="far fa-edit"></i></a>';
             $delete_icon='<a href="#" class="text-danger delete-btn" data-id="'.$each->id.'"><i class="fas fa-trash-alt"></i></a>';
             return '<div class="action-icon">'.$edit_icon.$delete_icon.'</div>';
          })
@@ -56,10 +56,11 @@ class PermissionController extends Controller
     }
 
     public function edit($id){
-        $permissions=Role::findOrFail($id);
-        return view('permission.edit',compact('permission'));
+        $permissions=Permission::findOrFail($id);
+        return view('permission.edit',compact('permissions'));
     }
     public function update($id,UpdatePermission $request){
+        // $validate =$request->validator();
         $permissions=Permission::findOrFail($id);
         $permissions->name=$request->name;
         $permissions->update();
@@ -71,4 +72,5 @@ class PermissionController extends Controller
         $permissions->delete();
         return 'success';
     }
+
 }

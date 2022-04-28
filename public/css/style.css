@@ -517,6 +517,9 @@ body{
       border-right: none;
   }
 /*-----------------------Datatable Css -------------*/
+.daterangepicker .drp-buttons .btn {
+    font-size:12px !important;
+}
 mark{
     padding:0 !important;
     background:#4CD195;

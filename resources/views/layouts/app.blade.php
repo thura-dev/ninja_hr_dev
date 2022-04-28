@@ -26,7 +26,11 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 {{-- Daterangepicker csss --}}
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{{-- select 2 css --}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+@yield('extra_css')
 </head>
 <body>
     <div class="page-wrapper chiller-theme">
@@ -62,35 +66,51 @@
                   <span>Menu</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('home') }}">
                       <i class="fa fa-home"></i>
                       <span>Home</span>
                     </a>
                   </li>
+                  @can('view_company_setting')
+                  <li>
+                    <a href="{{ route('company-setting.show',1) }}">
+                      <i class="fa fa-building"></i>
+                      <span>Company Setting</span>
+                    </a>
+                  </li>
+                  @endcan
+                  @can('view_employee')
                   <li>
                     <a href="{{ route('employee.index') }}">
                       <i class="fa fa-users"></i>
                       <span>Employees</span>
                     </a>
                   </li>
+                  @endcan
+                  @can('view_department')
                   <li>
                     <a href="{{ route('department.index') }}">
                       <i class="fa fa-sitemap"></i>
                       <span>Department</span>
                     </a>
                   </li>
-                  <li>
+                  @endcan
+                  @can('view_role')
+                    <li>
                     <a href="{{ route('role.index') }}">
                       <i class="fa fa-user-shield"></i>
                       <span>Role</span>
                     </a>
                   </li>
+                  @endcan
+                  @can('view_permission')
                   <li>
                     <a href="{{ route('permission.index') }}">
                       <i class="fa fa-shield-alt"></i>
                       <span>Permission</span>
                     </a>
                   </li>
+                  @endcan
                 {{-- <li class="sidebar-dropdown">
                   <a href="#">
                     <i class="fa fa-globe"></i>
@@ -196,6 +216,8 @@
  {{-- DataTable Jquery Mark JS --}}
  <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)"></script>
  <script src="https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.js"></script>
+ {{-- select 2 js --}}
+ <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
   $(function ($) {
       let token=document.head.querySelector('meta[name="csrf-token"]');
@@ -284,12 +306,14 @@
                     "processing": "<img src='/image/loading.gif' style='width:50px'/><p>....Loaging...</p>"
                 }
 
+
         });
         $('#back-btn').on('click', function(e){
                     e.preventDefault();
                     window.history.go(-1);
                     return false;
-                })
+                });
+                $('.select-ninja').select2();
 });
 </script>
  @yield('scripts')
