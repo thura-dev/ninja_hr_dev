@@ -64,14 +64,14 @@ class EmployeeController extends Controller
         ->make(true);
     }
     public function create(){
-        $departments=Department::orderBy('title')->get();
+        $departments=Department::ordenorBy('title')->get();
         $roles=Role::all();
         return view('employee.create',compact('departments','roles'));
     }
 
     //test
     public function store(StoreEmployee $request){
-        $validated = $request->validated();
+
         $profile_img_name=null;
         if($request->hasFile('profile_img')){
             $profile_img_file=$request->file('profile_img');
@@ -116,7 +116,7 @@ class EmployeeController extends Controller
             $profile_img_name=uniqid().'-'.time().'.'.$profile_img_file->getClientOriginalExtension();
             Storage::disk('public')->put('employee/'.$profile_img_name, file_get_contents($profile_img_file));
         }
-        
+
         $employee->employee_id=$request->employee_id;
         $employee->name=$request->name;
         $employee->phone=$request->phone;

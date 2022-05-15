@@ -55,7 +55,8 @@ class DepartmentController extends Controller
         return view('department.edit',compact('department'));
     }
     public function update($id,UpdateDepartment $request){
-
+        
+        
         $department=Department::findOrFail($id);
         $department->title=$request->title;
         $department->update();

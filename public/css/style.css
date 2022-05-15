@@ -545,7 +545,7 @@ mark{
     color:#fff;
 }
 .paginate_button{
-    font-size: 14px !;
+    font-size: 14px !important;
 }
 
 .table.dataTable>tbody>tr.child ul.dtr-details{
